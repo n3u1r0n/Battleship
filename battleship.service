@@ -1,0 +1,11 @@
+[Unit]
+Description=Battleship
+After=network.target
+[Service]
+User=neutron
+Group=www-data
+WorkingDirectory=/home/neutron/Battleship
+Environment="PATH=/home/neutron/Battleship/venv/bin"
+ExecStart=/home/neutron/Battleship/venv/bin/gunicorn --worker-class eventlet -w 1 --bind 127.0.0.1:4200 wsgi:app
+[Install]
+WantedBy=multi-user.target
